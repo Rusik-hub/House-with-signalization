@@ -11,6 +11,7 @@ public class SignalizationController : MonoBehaviour
 
     private AudioSource _audio;
     private float _volumeMoveScale = 0.001f;
+    private float _runningTime = 0;
 
     private void Start()
     {
@@ -46,6 +47,7 @@ public class SignalizationController : MonoBehaviour
     {
         while (_audio.volume != target)
         {
+            _runningTime += Time.deltaTime;
             _audio.volume = Mathf.MoveTowards(_audio.volume, target, _volumeMoveScale);
 
             yield return null;
